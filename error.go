@@ -14,9 +14,9 @@ type Error struct {
 }
 
 // New will 新建Error
-func New(tips string) (e *Error) {
+func New(tips string) (e error) {
 	defer func() {
-		_, e.file, e.line, e.ok = runtime.Caller(2)
+		_, e.(*Error).file, e.(*Error).line, e.(*Error).ok = runtime.Caller(2)
 	}()
 	return &Error{
 		tips: tips,
